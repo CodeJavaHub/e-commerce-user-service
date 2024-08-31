@@ -1,4 +1,4 @@
-package com.ecom.e_commerce_user_service.dto;
+package com.ecom.userservice.dto;
 
 public class LoginRequest {
 
