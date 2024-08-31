@@ -2,9 +2,7 @@ package com.ecom.userservice.dto;
 
 public class LoginRequest {
 
-    private String username;
+  private String username;
 
-    private String password;
-
-
+  private String password;
 }
