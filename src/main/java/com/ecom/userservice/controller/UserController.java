@@ -4,14 +4,11 @@ import com.ecom.userservice.dto.LoginRequest;
 import com.ecom.userservice.dto.LoginResponse;
 import com.ecom.userservice.dto.UserDto;
 import com.ecom.userservice.service.UserService;
-import jakarta.validation.Valid;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,20 +31,18 @@ public class UserController {
     return null;
   }
 
-  // TODO Need to add Enum into the DTO and Add enum validation for the request
   @PostMapping("/signup")
   public ResponseEntity<LoginResponse> signUp(
       @RequestHeader(value = "trace_id", required = false) String traceId,
-      @Valid @RequestBody UserDto userDto) {
-    System.out.println("User Request" + userDto.toString());
+      @RequestBody UserDto userDto) {
     LoginResponse loginResponse = userService.saveUser(userDto);
-    log.info(traceId + ": User Request: {}", userDto.toString());
-    return new ResponseEntity(loginResponse, HttpStatus.OK);
+    log.info("{}: User Request: {}", traceId, userDto.toString());
+    return ResponseEntity.ok(loginResponse);
   }
 
   @GetMapping("/all")
-  public ResponseEntity<List<UserDto>> getAllUsers(){
+  public ResponseEntity<List<UserDto>> getAllUsers() {
     List<UserDto> userList = userService.getAllUsers();
-    return new ResponseEntity<>(userList, HttpStatus.OK);
+    return ResponseEntity.ok(userList);
   }
 }
