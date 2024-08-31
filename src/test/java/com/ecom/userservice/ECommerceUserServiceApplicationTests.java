@@ -1,4 +1,4 @@
-package com.ecom.e_commerce_user_service;
+package com.ecom.userservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
