@@ -1,6 +1,5 @@
-package com.ecom.userservice.common;
+package com.ecom.userservice.dto;
 
-import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +11,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ErrorMessage {
-  private String status;
-  private Map<String,String> errorDetails;
+public class LoginRequestDto {
 
+  private String username;
+
+  private String password;
 }

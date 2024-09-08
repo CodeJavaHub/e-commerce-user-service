@@ -1,12 +1,16 @@
 package com.ecom.userservice.service;
 
-import com.ecom.userservice.dto.LoginResponse;
+import com.ecom.userservice.dto.LoginRequestDto;
+import com.ecom.userservice.dto.LoginResponseDto;
 import com.ecom.userservice.dto.UserDto;
+import com.ecom.userservice.entity.User;
 import java.util.List;
 
 public interface UserService {
 
-  LoginResponse saveUser(UserDto userDto);
+  LoginResponseDto saveUser(UserDto userDto);
 
   List<UserDto> getAllUsers();
+
+  User authenticate(LoginRequestDto loginRequest);
 }
