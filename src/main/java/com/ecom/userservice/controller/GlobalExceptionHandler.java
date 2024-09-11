@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ErrorMessage> handleValidationExceptions(MethodArgumentNotValidException ex) {
     ErrorMessage errorMessage = new ErrorMessage();
-    errorMessage.setStatus("400");
+    errorMessage.setStatus(HttpStatus.BAD_REQUEST.value());
     Map<String, String> errors = new HashMap<>();
     ex.getBindingResult().getFieldErrors().forEach(error ->
         errors.put(error.getField(), error.getDefaultMessage())
@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(DuplicateUserFoundException.class)
   public ResponseEntity<ErrorMessage> handleDuplicateUserExceptions(DuplicateUserFoundException ex) {
     ErrorMessage errorMessage = new ErrorMessage();
-    errorMessage.setStatus("422");
+    errorMessage.setStatus(HttpStatus.UNPROCESSABLE_ENTITY.value());
     Map<String, String> errors = new HashMap<>();
     errors.put("error", ex.getMessage());
     errorMessage.setErrorDetails(errors);

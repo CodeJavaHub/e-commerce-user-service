@@ -13,7 +13,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ErrorMessage {
-  private String status;
+
+  private int status;
+
+  private String message;
+
+  private long timeStamp;
+
   private Map<String,String> errorDetails;
 
 }

@@ -2,8 +2,10 @@ package com.ecom.userservice.controller;
 
 import com.ecom.userservice.dto.LoginRequestDto;
 import com.ecom.userservice.dto.LoginResponseDto;
+import com.ecom.userservice.dto.UserDetailsDto;
 import com.ecom.userservice.dto.UserDto;
 import com.ecom.userservice.entity.User;
+import com.ecom.userservice.mapper.UserDetailsMapper;
 import com.ecom.userservice.service.UserService;
 import com.ecom.userservice.service.impl.JwtServiceImpl;
 import java.util.List;
@@ -34,8 +36,9 @@ public class UserController {
   @PostMapping("/login")
   public ResponseEntity<?> authenticate(@RequestBody LoginRequestDto loginRequest) {
     User authenticatedUser = userService.authenticate(loginRequest);
+    UserDetailsDto userDetailsDto = UserDetailsMapper.USER_DETAILS_MAPPER.convertToDto(authenticatedUser);
     String jwtToken = jwtService.generateToken(authenticatedUser);
-    LoginResponseDto loginResponse = new LoginResponseDto("Login Success!", jwtToken,jwtService.getExpirationTime(),null);
+    LoginResponseDto loginResponse = new LoginResponseDto("Login Success!", jwtToken,jwtService.getExpirationTime(),userDetailsDto);
     return ResponseEntity.ok(loginResponse);
   }
 
