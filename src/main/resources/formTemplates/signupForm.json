@@ -1,0 +1,108 @@
+{
+  "formName": "SignUpForm",
+  "fields": [
+    {
+      "name": "firstName",
+      "value": "",
+      "datatype": "string",
+      "validationRule": {
+        "min": "0",
+        "max": "10",
+        "regex": ""
+      },
+      "inputType": "freeform",
+      "readOnly": false,
+      "required": true
+    },
+    {
+      "name": "lastName",
+      "value": "",
+      "datatype": "string",
+      "validationRule": {
+        "min": "0",
+        "max": "10",
+        "regex": ""
+      },
+      "inputType": "freeform",
+      "readOnly": false,
+      "required": true
+    },
+    {
+      "name": "email",
+      "value": "",
+      "datatype": "string",
+      "validationRule": {
+        "min": "0",
+        "max": "10",
+        "regex": ""
+      },
+      "inputType": "freeform",
+      "readOnly": false,
+      "required": true
+    },
+    {
+      "name": "phone",
+      "value": "",
+      "datatype": "string",
+      "validationRule": {
+        "min": "0",
+        "max": "10",
+        "regex": ""
+      },
+      "inputType": "freeform",
+      "readOnly": false,
+      "required": true
+    },
+    {
+      "name": "gender",
+      "value": "",
+      "datatype": "string",
+      "validationRule": {
+        "min": "0",
+        "max": "10",
+        "regex": ""
+      },
+      "inputType": "dropdown",
+      "readOnly": false,
+      "options": [
+        "MALE",
+        "FEMALE",
+        "OTHER"
+      ],
+      "required": true
+    },{
+      "name": "role",
+      "value": "",
+      "datatype": "string",
+      "validationRule": {
+        "min": "0",
+        "max": "10",
+        "regex": ""
+      },
+      "inputType": "dropdown",
+      "readOnly": false,
+      "options": [
+        "CUSTOMER",
+        "ADMIN",
+        "USER"
+      ],
+      "required": true
+    },
+    {
+      "name": "password",
+      "value": "",
+      "datatype": "string",
+      "validationRule": {
+        "min": "0",
+        "max": "10",
+        "regex": ""
+      },
+      "inputType": "freeform",
+      "readOnly": false,
+      "required": true
+    }
+  ],
+  "operations": [
+    "save"
+  ]
+}
