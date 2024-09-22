@@ -1,9 +1,13 @@
 package com.ecom.userservice.controller;
 
-import com.ecom.userservice.dto.LoginRequest;
-import com.ecom.userservice.dto.LoginResponse;
+import com.ecom.userservice.dto.LoginRequestDto;
+import com.ecom.userservice.dto.LoginResponseDto;
+import com.ecom.userservice.dto.UserDetailsDto;
 import com.ecom.userservice.dto.UserDto;
+import com.ecom.userservice.entity.User;
+import com.ecom.userservice.mapper.UserDetailsMapper;
 import com.ecom.userservice.service.UserService;
+import com.ecom.userservice.service.impl.JwtServiceImpl;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,23 +23,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/user")
+@RequestMapping("/auth/user")
 public class UserController {
 
   @Autowired private UserService userService;
 
+ @Autowired private JwtServiceImpl jwtService;
+
+
   private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
   @PostMapping("/login")
-  public ResponseEntity<?> authenticate(@RequestBody LoginRequest loginRequest) {
-    return null;
+  public ResponseEntity<?> authenticate(@RequestBody LoginRequestDto loginRequest) {
+    User authenticatedUser = userService.authenticate(loginRequest);
+    UserDetailsDto userDetailsDto = UserDetailsMapper.USER_DETAILS_MAPPER.convertToDto(authenticatedUser);
+    String jwtToken = jwtService.generateToken(authenticatedUser);
+    LoginResponseDto loginResponse = new LoginResponseDto("Login Success!", jwtToken,jwtService.getExpirationTime(),userDetailsDto);
+    return ResponseEntity.ok(loginResponse);
   }
 
   @PostMapping("/signup")
-  public ResponseEntity<LoginResponse> signUp(
+  public ResponseEntity<LoginResponseDto> signUp(
       @RequestHeader(value = "trace_id", required = false) String traceId,
       @RequestBody UserDto userDto) {
-    LoginResponse loginResponse = userService.saveUser(userDto);
+    LoginResponseDto loginResponse = userService.saveUser(userDto);
     log.info("{}: User Request: {}", traceId, userDto.toString());
     return ResponseEntity.ok(loginResponse);
   }

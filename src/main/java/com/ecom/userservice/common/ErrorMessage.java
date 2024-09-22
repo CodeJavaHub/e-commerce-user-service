@@ -1,41 +1,25 @@
 package com.ecom.userservice.common;
 
 import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ErrorMessage {
-  private String status;
+
+  private int status;
+
+  private String message;
+
+  private long timeStamp;
 
   private Map<String,String> errorDetails;
 
-  public ErrorMessage() {
-  }
-
-  public ErrorMessage(String status, Map<String, String> errorDetails) {
-    this.status = status;
-    this.errorDetails = errorDetails;
-  }
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-  public Map<String, String> getErrorDetails() {
-    return errorDetails;
-  }
-
-  public void setErrorDetails(Map<String, String> errorDetails) {
-    this.errorDetails = errorDetails;
-  }
-
-  @Override
-  public String toString() {
-    return "ErrorMessage{" +
-        "status='" + status + '\'' +
-        ", errorDetails=" + errorDetails +
-        '}';
-  }
 }
