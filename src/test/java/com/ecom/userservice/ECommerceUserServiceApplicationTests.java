@@ -8,6 +8,7 @@ class ECommerceUserServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

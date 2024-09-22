@@ -48,6 +48,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Mockito dependencies for unit testing
+	testImplementation 'org.mockito:mockito-core:5.2.0'            // Core Mockito library
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.2.0'   // Integration with JUnit 5
+
+
 }
 
 dependencyManagement {
@@ -58,4 +64,10 @@ dependencyManagement {
 
 tasks.named('test') {
 	useJUnitPlatform()
+
+	// Enable test reports
+//	reports {
+//		html.required.set(true)  // Enable HTML report generation
+//		html.outputLocation.set(file("$buildDir/reports/tests"))  // Optional: specify report output location
+//	}
 }

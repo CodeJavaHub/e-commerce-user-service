@@ -13,4 +13,8 @@ public interface UserService {
   List<UserDto> getAllUsers();
 
   User authenticate(LoginRequestDto loginRequest);
+
+  User getUserById(Long id);
+
+  boolean updateUser(int i, String johnDoe);
 }
